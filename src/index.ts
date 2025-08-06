@@ -41,6 +41,10 @@ app.get('/courses/:id', (req, res) => {
 })
 
 app.post('/courses', (req, res) => {
+  if(!req.body.title) {
+    res.sendStatus(400)
+    return;
+  }
   const createdcourse = {
     id: +(new Date()),
     title: req.body.title
@@ -54,6 +58,21 @@ app.post('/courses', (req, res) => {
 
 app.delete('/courses/:id', (req, res) => {
   db.courses = db.courses.filter(c => c.id !== +req.params.id)
+  
+  res.sendStatus(204)
+})
+
+app.put('/courses/:id', (req, res) => {
+  if(!req.body.title) {
+    res.sendStatus(400)
+    return;
+  }
+  const foundCourse = db.courses.find(c => c.id === +req.params.id)
+  if (!foundCourse) {
+    res.sendStatus(404)
+    return;
+  }
+  foundCourse.title = req.body.title
   
   res.sendStatus(204)
 })
