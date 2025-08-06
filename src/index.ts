@@ -30,7 +30,7 @@ app.get('/', (req, res) => {
   if (a > 5){
     res.send('OK!')
   }
-  res.send('Hello World!')
+  res.send('Hello, Olga!')
 })
 
 app.get('/courses', (req, res) => {
