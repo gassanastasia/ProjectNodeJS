@@ -2,7 +2,7 @@ import express from 'express'
 import { title } from 'process'
 
 const app = express()
-const port = 3000
+const port = process.env.PORT || 3000
 
 const HTTP_STATUSES = {
   OK_200: 200,
